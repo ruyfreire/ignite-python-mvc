@@ -1,5 +1,5 @@
 import pytest
-from .people_creator_controller import PeopleCreatorController
+from .person_creator_controller import PersonCreatorController
 
 
 class MockPeopleRepository:
@@ -8,30 +8,30 @@ class MockPeopleRepository:
 
 
 def test_create():
-    people = {
+    person = {
         "first_name": "John",
         "last_name": "Doe",
         "age": 30,
         "pet_id": 1
     }
 
-    controller = PeopleCreatorController(MockPeopleRepository())
-    response = controller.create(people)
+    controller = PersonCreatorController(MockPeopleRepository())
+    response = controller.create(person)
 
     assert response['data']['type'] == 'Person'
     assert response['data']['count'] == 1
-    assert response['data']['attributes'] == people
+    assert response['data']['attributes'] == person
 
 
 def test_create_error():
-    people = {
+    person = {
         "first_name": "John123",
         "last_name": "Doe",
         "age": 30,
         "pet_id": 1
     }
 
-    controller = PeopleCreatorController(MockPeopleRepository())
+    controller = PersonCreatorController(MockPeopleRepository())
 
     with pytest.raises(ValueError):
-        controller.create(people)
+        controller.create(person)

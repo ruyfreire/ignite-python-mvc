@@ -2,7 +2,7 @@ import re
 from src.models.sqlite.interfaces.people_repository import PeopleRepositoryInterface
 
 
-class PeopleCreatorController:
+class PersonCreatorController:
     def __init__(self, people_repository: PeopleRepositoryInterface):
         self.__people_repository = people_repository
 
